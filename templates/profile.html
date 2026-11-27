@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Профиль — Мировой Атлас{% endblock %}
+{% block content %}
+
+<div class="card form-card profile-card">
+    <h2>👤 Профиль</h2>
+    <img class="profile-avatar" src="{{ user.avatar }}" alt="Фото {{ user.login }}">
+    <p><b>Логин:</b> {{ user.login }}</p>
+    <p>
+        <b>Роль:</b>
+        {% if user.role == 'admin' %}
+            <span class="role-badge admin">админ — можно править карточки стран</span>
+        {% else %}
+            <span class="role-badge reader">читатель — можно смотреть карту и профиль</span>
+        {% endif %}
+    </p>
+    <p><b>Дата регистрации:</b> {{ user.created }}</p>
+    <a class="btn btn-blue" href="/">← На главную</a>
+    <a class="btn btn-red" href="/logout">Выйти из системы</a>
+</div>
+
+{% endblock %}

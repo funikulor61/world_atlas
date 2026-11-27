@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Регистрация — Мировой Атлас{% endblock %}
+{% block content %}
+
+<div class="card form-card">
+    <h2>📝 Регистрация</h2>
+    <form method="post" action="/register" enctype="multipart/form-data">
+        <label for="login">Логин</label>
+        <input type="text" id="login" name="login" readonly autocomplete="off"
+               maxlength="20" data-slot-field
+               placeholder="наберите барабанами слот-машины ниже">
+        <label for="pass">Пароль</label>
+        <input type="password" id="pass" name="password" readonly autocomplete="off"
+               data-slot-field
+               placeholder="наберите барабанами слот-машины ниже">
+        <label for="photo">Фотография (будет видна рядом с вашим именем)</label>
+        <input type="file" id="photo" name="photo" accept=".png,.jpg,.jpeg">
+        <span class="form-note">не обязательно: без фото будет цветная заглушка с буквой</span>
+        <button type="submit" class="btn btn-green wide-btn">Зарегистрироваться</button>
+    </form>
+
+    <!-- «набор букв»: единственный способ заполнить поля — клик по барабану.
+         Ручной ввод с клавиатуры и вставка из буфера отключены. -->
+    <div class="slot-machine">
+        <span class="slot-title">🎲 Набор букв</span>
+        <select class="target-select" title="Куда писать букву">
+            <option value="login">→ Логин</option>
+            <option value="pass">→ Пароль</option>
+        </select>
+        <select class="layout-select" title="Раскладка">
+            <option value="en">EN</option>
+        </select>
+        <span class="slot-hint">Поля нельзя заполнять вручную: клик по барабану
+            вписывает его букву в выбранное поле — и барабаны сразу
+            прокручиваются заново. Не хватает нужной буквы —
+            нажмите «Крутить».</span>
+        <div class="reels"></div>
+        <div class="btns">
+            <button type="button" class="btn btn-ghost btn-sm spin-btn">🎲 Крутить</button>
+            <button type="button" class="btn btn-blue btn-sm back-btn" title="Удалить последний символ">⌫ Стереть</button>
+            <button type="button" class="btn btn-red btn-sm clear-btn">Очистить поле</button>
+        </div>
+    </div>
+
+    <p class="form-note">
+        Новый пользователь получает роль <b>читателя</b>: можно смотреть карту
+        и карточки стран, но нельзя ничего менять.
+    </p>
+</div>
+
+<script src="/static/slots.js"></script>
+
+{% endblock %}

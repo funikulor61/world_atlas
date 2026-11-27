@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Доступ запрещён — Мировой Атлас{% endblock %}
+{% block content %}
+
+<div class="card error-page">
+    <div class="code">403</div>
+    <h1>Доступ запрещён</h1>
+    <p>
+        У вашей роли нет прав на эту страницу: читатель может только просматривать
+        главную страницу, карту стран и свой профиль.
+    </p>
+    <button type="button" class="btn btn-green" onclick="backOrHome()">← Назад</button>
+    <a href="/" class="btn btn-blue">На главную</a>
+</div>
+
+<script>
+    // «стрелочка назад» на клиенте: без запроса к серверу
+    function backOrHome() {
+        if (history.length > 1) history.back();
+        else location.href = "/";
+    }
+</script>
+
+{% endblock %}

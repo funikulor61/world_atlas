@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Мировой Атлас{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<nav class="navbar container">
+    <a class="logo" href="/">🌍 Мировой Атлас</a>
+
+    {% if user %}
+        <a class="nav-link" href="/">Главная</a>
+        <a class="nav-link" href="/profile">Профиль</a>
+        {% if user.role == 'admin' %}
+            <a class="nav-link" href="/users">Пользователи</a>
+        {% endif %}
+        <img class="nav-avatar" src="{{ user.avatar }}" alt="Фото {{ user.login }}">
+        <b class="nav-login">{{ user.login }}</b>
+        {% if user.role == 'admin' %}
+            <span class="role-badge admin">админ</span>
+        {% else %}
+            <span class="role-badge reader">читатель</span>
+        {% endif %}
+        <a class="btn-exit" href="/logout">Выйти</a>
+    {% else %}
+        <a class="btn btn-blue btn-sm" href="/login">Вход</a>
+        <a class="btn btn-green btn-sm" href="/register">Регистрация</a>
+    {% endif %}
+</nav>
+
+<main class="container">
+    {% if flash %}
+        <div class="flash {{ flash.kind }}" onclick="this.remove()"
+             title="Нажмите, чтобы скрыть сообщение">{{ flash.text }}</div>
+    {% endif %}
+    {% block content %}{% endblock %}
+</main>
+
+
+</body>
+</html>

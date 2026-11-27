@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Страница не найдена — Мировой Атлас{% endblock %}
+{% block content %}
+
+<div class="card error-page">
+    <div class="code">404</div>
+    <h1>Страница не найдена</h1>
+    <p>
+        Страницы <b>{{ path }}</b> на сайте нет. Проверьте адрес —
+        возможно, опечатка.
+    </p>
+    <button type="button" class="btn btn-green" onclick="backOrHome()">← Назад</button>
+    <a href="/" class="btn btn-blue">На главную</a>
+</div>
+
+<script>
+    // «стрелочка назад» на клиенте: без запроса к серверу
+    function backOrHome() {
+        if (history.length > 1) history.back();
+        else location.href = "/";
+    }
+</script>
+
+{% endblock %}

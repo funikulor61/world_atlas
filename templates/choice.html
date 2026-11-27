@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Мировой Атлас{% endblock %}
+{% block content %}
+
+<section class="hero">
+    <h1>🌍 Мировой Атлас</h1>
+    <p>
+        Интерактивная карта современного мира: нажмите на любое государство —
+        и откроется карточка с населением, площадью и краткой справкой.
+        Сначала выберите, как продолжить.
+    </p>
+</section>
+
+<div class="choice-grid">
+    <a class="choice-card" href="/login">
+        <h2>🔑 Вход</h2>
+        <p>Уже есть аккаунт? Войдите — и карта мира сразу откроется.</p>
+        <b class="choice-more">Войти →</b>
+    </a>
+    <a class="choice-card green" href="/register">
+        <h2>📝 Регистрация</h2>
+        <p>Первый раз здесь? Заведите аккаунт и загрузите свою фотографию.</p>
+        <b class="choice-more">Создать аккаунт →</b>
+    </a>
+</div>
+
+{% endblock %}

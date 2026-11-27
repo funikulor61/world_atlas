@@ -1,0 +1,390 @@
+/* ============================================================
+   Мировой Атлас — единый файл стилей для всех страниц сайта
+   Цвета: голубой, светло-зелёный, белый
+   Разметка плоская: элементы лежат прямо в карточках,
+   расстояния задаёт grid — обёрток почти нет.
+   ============================================================ */
+
+:root {
+    --blue:        #4da8e0;   /* голубой — основной цвет */
+    --blue-dark:   #2b6cb0;
+    --blue-soft:   #e4f2fc;
+    --green:       #5fbf74;   /* светло-зелёный — акцент */
+    --green-dark:  #3f9e56;
+    --green-soft:  #e9f8ee;
+    --white:       #ffffff;
+    --ink:         #23425c;   /* тёмно-синий текст */
+    --ink-soft:    #5c7a95;
+    --danger:      #e05f5f;
+    --danger-soft: #fdeaea;
+    --shadow:      0 4px 18px rgba(43, 108, 176, 0.14);
+    --radius:      14px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(180deg, var(--blue-soft) 0%, var(--white) 30%, var(--green-soft) 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.55;
+}
+
+a { color: var(--blue-dark); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 18px; }
+
+/* ---------- Верхняя панель навигации (все элементы в один ряд) ---------- */
+.navbar {
+    background: var(--white);
+    box-shadow: var(--shadow);
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    padding-top: 10px; padding-bottom: 10px;
+}
+.logo {
+    font-size: 20px; font-weight: 700; color: var(--blue-dark);
+    text-decoration: none !important;
+}
+.nav-link {
+    padding: 7px 14px; border-radius: 9px; color: var(--ink);
+    font-size: 14.5px; font-weight: 600; text-decoration: none;
+}
+.nav-link:hover { background: var(--blue-soft); }
+.nav-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 2px solid var(--blue); object-fit: cover; background: var(--blue-soft);
+    margin-left: auto;                      /* блок пользователя — к правому краю */
+}
+.nav-login { font-size: 14px; }
+.role-badge {
+    display: inline-block; padding: 2px 9px; border-radius: 999px;
+    font-size: 11.5px; font-weight: 700;
+}
+.role-badge.admin { background: var(--blue); color: white; }
+.role-badge.reader { background: var(--green-soft); color: var(--green-dark); }
+.btn-exit {
+    background: var(--danger-soft); color: var(--danger);
+    padding: 8px 14px; border-radius: 9px; font-weight: 600; font-size: 13.5px;
+    text-decoration: none;
+}
+.btn-exit:hover { background: var(--danger); color: white; }
+
+/* ---------- Кнопки ---------- */
+.btn {
+    display: inline-block; border: none; cursor: pointer;
+    padding: 11px 22px; border-radius: 10px;
+    font-size: 15px; font-weight: 700; font-family: inherit;
+    transition: filter 0.15s, transform 0.05s; text-decoration: none;
+}
+.btn:active { transform: scale(0.98); }
+.btn:hover { filter: brightness(1.07); text-decoration: none; }
+.btn-blue { background: var(--blue); color: white; }
+.btn-green { background: var(--green); color: white; }
+.btn-red { background: var(--danger); color: white; }
+.btn-ghost {
+    background: var(--white); color: var(--blue-dark);
+    border: 1.5px solid var(--blue);
+}
+.btn-sm { padding: 7px 14px; font-size: 13px; border-radius: 8px; }
+.wide-btn { width: 100%; }
+
+/* ---------- Всплывающие сообщения ---------- */
+.flash {
+    max-width: 1100px; margin: 16px auto 0; padding: 12px 18px;
+    border-radius: var(--radius); font-weight: 600; font-size: 14.5px;
+    cursor: pointer;                                   /* клик — закрыть */
+    animation: flashIn 0.35s ease, flashOut 0.6s ease 6s forwards;
+}
+.flash.ok { background: var(--green-soft); color: var(--green-dark); border: 1px solid var(--green); }
+.flash.err { background: var(--danger-soft); color: var(--danger); border: 1px solid var(--danger); }
+@keyframes flashIn  { from { opacity: 0; transform: translateY(-8px); } }
+@keyframes flashOut { to   { opacity: 0; transform: translateY(-8px); } }
+
+/* ---------- Карточки и секции ---------- */
+.card {
+    background: var(--white); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 26px 30px; margin: 22px 0;
+}
+.section-title {
+    font-size: 24px; font-weight: 700; color: var(--blue-dark);
+    margin-bottom: 6px;
+}
+.section-sub { color: var(--ink-soft); margin-bottom: 18px; font-size: 15px; }
+
+/* ---------- Шапка-баннер ---------- */
+.hero {
+    margin: 26px 0;
+    background: linear-gradient(120deg, var(--blue) 0%, #79c5ee 45%, var(--green) 100%);
+    border-radius: 20px; color: white; padding: 44px 42px;
+    box-shadow: var(--shadow);
+}
+.hero h1 { font-size: 34px; margin-bottom: 12px; line-height: 1.2; }
+.hero p { font-size: 17px; max-width: 760px; opacity: 0.95; }
+
+/* ---------- Стартовая страница: выбор входа или регистрации ---------- */
+.choice-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin: 22px 0;
+}
+.choice-card {
+    background: var(--white); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 34px 30px; text-align: center;
+    text-decoration: none !important; border-top: 5px solid var(--blue);
+    transition: transform 0.15s;
+}
+.choice-card.green { border-top-color: var(--green); }
+.choice-card:hover { transform: translateY(-4px); }
+.choice-card h2 { color: var(--blue-dark); margin-bottom: 8px; font-size: 24px; }
+.choice-card p { color: var(--ink-soft); font-size: 14.5px; margin-bottom: 14px; }
+.choice-more { color: var(--blue-dark); font-size: 15px; }
+.choice-card.green .choice-more { color: var(--green-dark); }
+
+/* ---------- Карта ---------- */
+#world-map { width: 100%; height: 540px; }
+.map-search {
+    display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap;
+}
+.map-search input {
+    flex: 1; min-width: 220px; padding: 10px 16px; font-size: 15px;
+    border: 1.5px solid var(--blue); border-radius: 10px; outline: none;
+    font-family: inherit; background: var(--white);
+}
+.map-search input:focus { box-shadow: 0 0 0 3px var(--blue-soft); }
+/* живой поиск: подсказки появляются прямо при наборе (весь справочник
+   уже загружен на страницу, сервер не участвует) */
+.search-hints {
+    flex: 1 1 100%; display: flex; flex-direction: column; gap: 3px;
+    max-height: 245px; overflow-y: auto;
+}
+.hint-item {
+    text-align: left; padding: 8px 14px; font-size: 14px; font-family: inherit;
+    background: var(--white); border: 1px solid #cfe4f2; border-radius: 8px;
+    cursor: pointer; transition: background 0.15s, border-color 0.15s;
+}
+.hint-item:hover { background: var(--blue-soft); border-color: var(--blue); }
+.hint-empty {
+    padding: 8px 14px; font-size: 13px; color: var(--ink-soft);
+    background: var(--white); border: 1px dashed #cfe4f2; border-radius: 8px;
+}
+.map-note { font-size: 13px; color: var(--ink-soft); margin-top: 10px; }
+
+/* ---------- Всплывающая карточка страны (плоская) ---------- */
+.modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 500;
+    background: rgba(35, 66, 92, 0.45);
+    align-items: flex-start; justify-content: center;
+    overflow-y: auto; padding: 40px 16px;
+}
+.modal-overlay.open { display: flex; }
+.country-card {
+    background: var(--white); width: 100%; max-width: 560px;
+    border-radius: 18px; box-shadow: 0 18px 50px rgba(23, 54, 82, 0.35);
+    padding: 22px 26px; position: relative;
+}
+.cc-close {
+    position: absolute; top: 14px; right: 14px;
+    background: var(--blue-soft); border: none; cursor: pointer;
+    width: 34px; height: 34px; border-radius: 10px; font-size: 20px;
+    color: var(--ink-soft); font-weight: 700;
+}
+.cc-close:hover { background: var(--blue); color: white; }
+.cc-title { font-size: 23px; color: var(--ink); padding-right: 44px; }
+.cc-official { font-size: 12.5px; color: var(--ink-soft); margin: 2px 0 16px; }
+
+/* три одинаковых блока: население, площадь, плотность */
+.cc-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px; margin-bottom: 16px;
+}
+.stat {
+    background: var(--blue-soft); border-radius: 12px;
+    padding: 12px 8px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center;
+    min-height: 92px;
+}
+.stat.green { background: var(--green-soft); }
+.stat .num {
+    font-size: 17px; font-weight: 800; color: var(--blue-dark);
+    line-height: 1.25; min-height: 44px;
+    display: flex; align-items: center; justify-content: center;
+}
+.stat.green .num { color: var(--green-dark); }
+.stat .lbl { font-size: 12px; color: var(--ink-soft); }
+
+.cc-info { font-size: 15px; color: var(--ink); }
+
+/* форма правки карточки (только админ): поля в один столбец через grid */
+.cc-edit {
+    margin-top: 18px; border-top: 1px dashed var(--blue); padding-top: 16px;
+    display: grid; gap: 8px;
+}
+.cc-edit label {
+    display: block; font-size: 13px; font-weight: 700;
+    color: var(--blue-dark); margin-top: 8px;
+}
+.cc-edit textarea, .cc-edit input {
+    width: 100%; padding: 9px 12px; font-size: 14px; font-family: inherit;
+    border: 1.5px solid var(--blue); border-radius: 9px; outline: none; resize: vertical;
+}
+.cc-edit textarea { min-height: 90px; }
+.cc-edit .btn { margin-top: 10px; }
+.cc-hint { font-size: 12.5px; color: var(--ink-soft); margin-top: 10px; }
+
+/* ---------- Формы (вход и регистрация): поля лежат прямо в форме ---------- */
+.form-card { max-width: 460px; margin: 40px auto; }
+.form-card h2 { color: var(--blue-dark); font-size: 21px; margin-bottom: 14px; }
+.form-card form { display: grid; gap: 10px; }
+.form-card label {
+    display: block; font-size: 13.5px; font-weight: 700;
+    color: var(--ink);
+}
+.form-card input[type=text], .form-card input[type=password] {
+    width: 100%; padding: 11px 14px; font-size: 15px; font-family: inherit;
+    border: 1.5px solid #b9d9ef; border-radius: 10px; outline: none;
+    background: var(--white); color: var(--ink);
+}
+.form-card input:focus {
+    border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-soft);
+}
+.form-card input[type=file] {
+    width: 100%; font-size: 13.5px; font-family: inherit;
+    padding: 9px; border: 1.5px dashed #b9d9ef; border-radius: 10px;
+    background: var(--white);
+}
+.form-note { font-size: 12.5px; color: var(--ink-soft); margin-top: 10px; }
+
+/* ---------- «Набор букв»: слот-машина — единственный способ ввода ----------
+   Заголовок, два списка, подсказка, барабаны и кнопки — прямые дети
+   .slot-machine, раскладку задаёт CSS-сетка (обёрток нет).
+   Активное поле (куда пишут барабаны) подсвечивается зелёным. */
+.slot-machine {
+    margin-top: 16px; padding: 14px 14px 16px;
+    background: linear-gradient(145deg, #eaf6fe 0%, #f4fbf6 100%);
+    border: 2px solid var(--blue); border-radius: 14px;
+    box-shadow: inset 0 0 12px rgba(77, 168, 224, 0.15);
+    display: grid; grid-template-columns: 1fr auto auto; gap: 8px 8px;
+    align-items: center;
+}
+.slot-title {
+    font-weight: 800; font-size: 12.5px; color: var(--blue-dark);
+    text-transform: uppercase; letter-spacing: 1px;
+}
+.target-select, .layout-select {
+    background: var(--blue); color: white; border: none; border-radius: 8px;
+    padding: 5px 10px; font-weight: 700; font-size: 12px; cursor: pointer;
+    outline: none; font-family: inherit;
+}
+.target-select { background: var(--green); }   /* «куда писать» — зелёный */
+.slot-hint { grid-column: 1 / -1; font-size: 11.5px; color: var(--ink-soft); }
+.slot-hint.blocked { animation: hintFlash 0.9s ease; }
+@keyframes hintFlash {
+    0%, 100% { color: var(--ink-soft); }
+    25%, 75% { color: var(--danger); font-weight: 700; }
+}
+.form-card input.slot-target {
+    border-color: var(--green); box-shadow: 0 0 0 3px var(--green-soft);
+    background: #fbfffc;
+}
+.reels {
+    grid-column: 1 / -1;
+    display: flex; gap: 7px;
+}
+.reel {                          /* барабан — обычная кнопка */
+    flex: 1; min-width: 0; height: 54px;
+    background: linear-gradient(180deg, #ffffff 0%, #f2faf4 50%, #dcefe2 100%);
+    border: 2px solid var(--green); border-radius: 10px; color: var(--ink);
+    font-size: 22px; font-weight: 800; cursor: pointer; font-family: inherit;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: inset 0 4px 8px rgba(43, 108, 176, 0.12),
+                inset 0 -4px 8px rgba(43, 108, 176, 0.12),
+                0 3px 8px rgba(43, 108, 176, 0.18);
+    transition: transform 0.1s, border-color 0.2s, box-shadow 0.2s;
+    user-select: none; overflow: hidden;
+}
+.reel.symbol {
+    border-color: var(--blue);
+    background: linear-gradient(180deg, #ffffff 0%, #ecf7fd 50%, #d8ecfa 100%);
+}
+.reel:hover:not(.spinning) {
+    transform: translateY(-3px); border-color: var(--blue);
+    box-shadow: 0 0 12px rgba(77, 168, 224, 0.5);
+}
+.reel:active:not(.spinning) { transform: scale(0.94); }
+.reel.spinning { color: var(--blue); cursor: wait; animation: blurShake 0.1s infinite; }
+@keyframes blurShake {
+    0% { transform: translateY(-2px); }
+    50% { transform: translateY(2px); }
+    100% { transform: translateY(-2px); }
+}
+/* кнопки слот-машины — один flex-ряд (обёртка единственная, внутри кнопки) */
+.slot-machine .btns {
+    grid-column: 1 / -1;
+    display: flex; gap: 8px; flex-wrap: wrap; justify-content: space-between;
+}
+
+/* ---------- Страница профиля ---------- */
+.profile-card { text-align: center; }
+.profile-card p { font-size: 15px; margin: 10px 0; }
+.profile-avatar {
+    width: 130px; height: 130px; border-radius: 50%;
+    border: 4px solid var(--blue); object-fit: cover; background: var(--blue-soft);
+    margin: 14px auto 6px;
+}
+.profile-card .btn { margin: 12px 6px 0; }
+
+/* ---------- Таблица пользователей ---------- */
+.table-wrap { overflow-x: auto; }
+table.site-table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+.site-table th {
+    text-align: left; background: var(--blue-soft); color: var(--blue-dark);
+    padding: 11px 14px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.4px;
+}
+.site-table td { padding: 11px 14px; border-bottom: 1px solid #e8f0f7; vertical-align: middle; }
+.site-table tr:hover td { background: #f5fafd; }
+.site-table img.avatar-mini {
+    width: 34px; height: 34px; border-radius: 50%; object-fit: cover;
+    border: 1.5px solid var(--blue); background: var(--blue-soft);
+}
+.site-table select {
+    padding: 7px 10px; border: 1.5px solid #b9d9ef; border-radius: 8px;
+    font-family: inherit; font-size: 13.5px; background: var(--white);
+}
+.inline-form { display: flex; gap: 8px; align-items: center; }
+
+/* ---------- Страницы ошибок 403 / 404 ---------- */
+.error-page { text-align: center; padding: 70px 20px; }
+.error-page .code {
+    font-size: 90px; font-weight: 800; line-height: 1;
+    background: linear-gradient(120deg, var(--blue), var(--green));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.error-page h1 { font-size: 26px; color: var(--ink); margin: 12px 0 8px; }
+.error-page p { color: var(--ink-soft); margin-bottom: 24px; }
+
+/* ---------- Подвал ---------- */
+footer {
+    margin-top: 40px; padding: 22px 0 30px; text-align: center;
+    color: var(--ink-soft); font-size: 13.5px;
+    border-top: 1px solid #dceaf4;
+}
+
+/* ---------- Адаптивность (телефоны) ---------- */
+@media (max-width: 760px) {
+    .hero { padding: 30px 22px; }
+    .hero h1 { font-size: 25px; }
+    .choice-grid { grid-template-columns: 1fr; }
+    #world-map { height: 380px; }
+    .navbar { gap: 10px; }
+    .nav-avatar { margin-left: 0; }
+    .container { padding: 0 12px; }
+    .card { padding: 18px 16px; }
+    .reel { height: 46px; font-size: 19px; border-radius: 8px; }
+    .slot-machine { padding: 10px 10px 12px; }
+    .reels { gap: 5px; }
+    .stat .num { font-size: 14px; }
+    .cc-stats { grid-template-columns: 1fr; }
+}
